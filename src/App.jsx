@@ -1,87 +1,163 @@
-import { useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { BrainCircuit, Code2, Bot, Home, Star, Settings, Layers, Briefcase, Mail as MailIcon, Cpu, Radio } from 'lucide-react';
 import Aurora from './components/Aurora.jsx';
 import ASCIIText from './components/ASCIIText.jsx';
-import CardSwap, { Card } from './components/CardSwap.jsx';
 import BounceCards from './components/BounceCards.jsx';
 import Crosshair from './components/Crosshair.jsx';
+import InfiniteMenu from './components/InfiniteMenu.jsx';
+import DecryptedText from './components/DecryptedText.jsx';
+import Dock from './components/Dock.jsx';
 import './App.css';
 
 const services = [
   {
-    icon: '🧠',
+    icon: BrainCircuit,
     title: 'Inteligencia Artificial',
     description:
-      'Modelos predictivos, asistentes virtuales y soluciones de visión computacional que aprenden con tus datos y se adaptan a tu operación.'
+      'Modelos predictivos, asistentes virtuales y visión computacional que aprenden de tus datos para anticipar decisiones clave.'
   },
   {
-    icon: '📱',
+    icon: Code2,
     title: 'Desarrollo de Software',
     description:
-      'Aplicaciones móviles, plataformas web y sistemas integrados que combinan UX impecable con automatización inteligente.'
+      'Aplicaciones móviles, plataformas web y sistemas integrados que combinan experiencias fluidas con automatización inteligente.'
   },
   {
-    icon: '⚙️',
+    icon: Bot,
     title: 'Hardware y Robótica',
     description:
-      'Sensores, robots colaborativos y dispositivos a medida listos para integrarse con tu infraestructura digital.'
+      'Sensores, robots colaborativos y dispositivos conectados listos para integrarse con tu infraestructura digital.'
   }
 ];
 
-const reasons = [
+const reasonPoints = [
+  'Innovación real basada en I+D',
+  'Soluciones escalables y personalizadas',
+  'Hardware y software integrados',
+  'Equipo apasionado por el futuro'
+];
+
+const reasonItems = [
   {
-    title: 'Innovación real basada en I+D',
-    copy:
-      'Laboratorios propios, procesos de experimentación continua y alianzas con centros de investigación para llevar ideas a prototipos en semanas.'
+    image: 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=900&q=80',
+    link: '#vision',
+    title: 'Laboratorio de I+D',
+    description: 'Experimentación continua con IA aplicada para iterar en semanas.'
   },
   {
-    title: 'Soluciones escalables y personalizadas',
-    copy:
-      'Arquitecturas modulares, APIs seguras y despliegues multi-cloud que acompañan el crecimiento de tu empresa sin fricciones.'
+    image: 'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?auto=format&fit=crop&w=900&q=80',
+    link: '#servicios',
+    title: 'Arquitecturas escalables',
+    description: 'Microservicios seguros listos para crecer contigo.'
   },
   {
-    title: 'Integración entre hardware y software',
-    copy:
-      'Un mismo equipo lidera firmware, controladores, aplicaciones y analítica, logrando ecosistemas conectados desde el chip hasta la nube.'
+    image: 'https://images.unsplash.com/photo-1581092160607-7e0cdfbb6792?auto=format&fit=crop&w=900&q=80',
+    link: '#proyectos',
+    title: 'Robótica inteligente',
+    description: 'Dispositivos autónomos que conectan campo y nube.'
   },
   {
-    title: 'Equipo apasionado por el futuro',
-    copy:
-      'Ingenieras, científicos de datos y especialistas en experiencia listos para co-crear contigo soluciones centradas en las personas.'
+    image: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=900&q=80',
+    link: '#contacto',
+    title: 'Equipo multidisciplinario',
+    description: 'Ingeniería, diseño y estrategia alineadas a tu visión.'
   }
 ];
 
 const projectImages = [
-  'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1526378722484-bd91ca387e72?auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80',
+  'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80',
   'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80'
+  'https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=600&q=80'
 ];
 
 const projectTransforms = [
-  'rotate(7deg) translate(-160px)',
-  'rotate(2deg) translate(-80px)',
+  'rotate(6deg) translate(-150px)',
+  'rotate(1deg) translate(-80px)',
   'rotate(-2deg)',
-  'rotate(3deg) translate(80px)',
-  'rotate(-5deg) translate(160px)'
+  'rotate(4deg) translate(80px)',
+  'rotate(-5deg) translate(150px)'
 ];
 
 export default function App() {
   const objectiveRef = useRef(null);
+  const [objectiveVisible, setObjectiveVisible] = useState(false);
+
+  useEffect(() => {
+    const animatedNodes = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          } else {
+            entry.target.classList.remove('is-visible');
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    animatedNodes.forEach(node => observer.observe(node));
+
+    return () => {
+      animatedNodes.forEach(node => observer.unobserve(node));
+    };
+  }, []);
+
+  const dockItems = useMemo(
+    () => [
+      {
+        icon: <Home size={18} />,
+        label: 'Inicio',
+        onClick: () => document.querySelector('#inicio')?.scrollIntoView({ behavior: 'smooth' })
+      },
+      {
+        icon: <Star size={18} />,
+        label: 'Visión',
+        onClick: () => document.querySelector('#vision')?.scrollIntoView({ behavior: 'smooth' })
+      },
+      {
+        icon: <Settings size={18} />,
+        label: 'Servicios',
+        onClick: () => document.querySelector('#servicios')?.scrollIntoView({ behavior: 'smooth' })
+      },
+      {
+        icon: <Layers size={18} />,
+        label: 'Por qué',
+        onClick: () => document.querySelector('#porque')?.scrollIntoView({ behavior: 'smooth' })
+      },
+      {
+        icon: <Briefcase size={18} />,
+        label: 'Proyectos',
+        onClick: () => document.querySelector('#proyectos')?.scrollIntoView({ behavior: 'smooth' })
+      },
+      {
+        icon: <MailIcon size={18} />,
+        label: 'Contacto',
+        onClick: () => document.querySelector('#contacto')?.scrollIntoView({ behavior: 'smooth' })
+      }
+    ], []
+  );
 
   return (
     <div className="app">
       <Aurora colorStops={["#007BFF", "#0A192F", "#00FF9F"]} blend={0.5} amplitude={1.05} speed={0.45} />
 
       <header className="hero" id="inicio">
+        <div className="hero__visual" aria-hidden="true">
+          <ASCIIText text="MK NEXUS" enableWaves asciiFontSize={10} textFontSize={240} textColor="#ffffff" planeBaseHeight={12} />
+          <div className="hero__visual-gradient" />
+        </div>
         <div className="hero__overlay">
-          <div className="hero__copy">
+          <div className="hero__copy" data-animate>
             <p className="hero__eyebrow">MK Nexus</p>
             <h1 className="hero__title">
               Impulsamos el futuro con inteligencia artificial, desarrollo avanzado y robótica de nueva generación.
             </h1>
             <p className="hero__lead">
-              En MK Nexus creamos soluciones inteligentes que transforman industrias y potencian el progreso humano. Conecta tu visión con algoritmos, software y hardware que ya están listos para despegar.
+              En MK Nexus creamos soluciones inteligentes que transforman industrias y potencian el progreso humano. Conecta tu visión con algoritmos, software y hardware listos para despegar.
             </p>
             <div className="hero__actions">
               <a className="btn btn--primary" href="#servicios">
@@ -92,93 +168,113 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div className="hero__visual" aria-hidden="true">
-            <ASCIIText text="MK NEXUS" enableWaves asciiFontSize={9} textFontSize={220} textColor="#ffffff" planeBaseHeight={9} />
-          </div>
         </div>
       </header>
 
       <main className="layout">
         <section id="servicios" className="section section--services">
-          <div className="section__intro">
-            <span className="section__eyebrow">🤖 Sección 2</span>
+          <div className="section__intro" data-animate>
             <h2>Qué hacemos</h2>
             <p>
-              Diseñamos soluciones de IA, software y robótica que resuelven desafíos concretos. Cada iniciativa nace de la combinación entre estrategia, creatividad tecnológica y validación con usuarios reales.
+              Diseñamos soluciones de IA, software y robótica que resuelven desafíos concretos. Cada iniciativa combina estrategia, creatividad tecnológica y validación con usuarios reales.
             </p>
           </div>
-          <div className="services__grid">
-            {services.map(service => (
-              <article key={service.title} className="service-card">
-                <div className="service-card__icon" aria-hidden="true">
-                  {service.icon}
-                </div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-              </article>
-            ))}
+          <div className="services__grid" data-animate>
+            {services.map(service => {
+              const Icon = service.icon;
+              return (
+                <article key={service.title} className="service-card">
+                  <div className="service-card__icon" aria-hidden="true">
+                    <Icon size={28} />
+                  </div>
+                  <h3>{service.title}</h3>
+                  <p>{service.description}</p>
+                </article>
+              );
+            })}
           </div>
         </section>
 
         <section id="vision" className="section section--vision">
-          <div className="section__intro">
-            <span className="section__eyebrow">💡 Sección 3</span>
+          <div className="section__intro" data-animate>
             <h2>Nuestra visión</h2>
             <p>
-              En MK Nexus creemos que el futuro no se espera, se construye. Nuestra misión es fusionar la inteligencia artificial, el software y la robótica para crear soluciones que aceleren la innovación global.
+              En MK Nexus creemos que el futuro no se espera, se construye. Nuestra misión es fusionar la inteligencia artificial, el software y la robótica para acelerar la innovación global.
             </p>
           </div>
           <div className="vision__grid">
-            <div className="vision__copy">
+            <div className="vision__copy" data-animate>
               <p>
-                Nos enfocamos en proyectos con impacto real: automatizamos cadenas logísticas, potenciamos la salud con diagnósticos aumentados y desarrollamos robots que colaboran con las personas. Cada entrega combina velocidad, confiabilidad y visión estratégica.
+                Nos enfocamos en proyectos con impacto real: automatizamos cadenas logísticas, potenciamos la salud con diagnósticos aumentados y desarrollamos robots que colaboran con las personas.
               </p>
               <p>
-                El objetivo es simple: ayudarte a lanzar productos inteligentes que eleven tu competitividad hoy y preparen a tu organización para lo que viene.
+                Nuestra meta es ayudarte a lanzar productos inteligentes que eleven tu competitividad hoy y preparen a tu organización para lo que viene.
               </p>
             </div>
-            <div className="vision__objective" ref={objectiveRef}>
-              <Crosshair color="#00FFFF" containerRef={objectiveRef} />
-              <div className="vision__objective-card">
-                <h3>Objetivo MK Nexus</h3>
-                <p>
-                  Combinar creatividad, ingeniería y ética para construir ecosistemas tecnológicos confiables que amplifiquen la capacidad humana en cada industria con la que colaboramos.
-                </p>
-              </div>
+            <div className="vision__objective" ref={objectiveRef} data-animate>
+              <Crosshair color="#00FF9F" containerRef={objectiveRef} />
+              <button
+                type="button"
+                className="vision__objective-trigger"
+                onMouseEnter={() => setObjectiveVisible(true)}
+                onMouseLeave={() => setObjectiveVisible(false)}
+                onFocus={() => setObjectiveVisible(true)}
+                onBlur={() => setObjectiveVisible(false)}
+              >
+                Objetivo
+              </button>
+              <span className={`vision__objective-reveal ${objectiveVisible ? 'is-visible' : ''}`}>
+                Tecnología que impulsa
+              </span>
             </div>
           </div>
         </section>
 
         <section id="porque" className="section section--reasons">
-          <div className="section__intro">
-            <span className="section__eyebrow">👥 Sección 4</span>
-            <h2>Por qué elegirnos</h2>
-            <p>
-              Trabajamos como socios tecnológicos, co-creando contigo para que cada entrega tenga resultados tangibles desde el primer sprint.
-            </p>
+          <div className="reasons__immersive">
+            <InfiniteMenu items={reasonItems} />
           </div>
-          <div className="reasons__deck">
-            <CardSwap cardDistance={70} verticalDistance={75} delay={4500} width={420} height={320}>
-              {reasons.map(reason => (
-                <Card key={reason.title} className="reason-card">
-                  <h3>{reason.title}</h3>
-                  <p>{reason.copy}</p>
-                </Card>
+          <div className="reasons__content" data-animate>
+            <DecryptedText
+              text="Por qué elegirnos"
+              animateOn="view"
+              revealDirection="center"
+              parentClassName="reasons__title"
+              className="reasons__title--revealed"
+              encryptedClassName="reasons__title--scrambled"
+              sequential
+            />
+            <p>
+              Trabajamos como socios tecnológicos para co-crear experiencias con resultados tangibles desde el primer sprint.
+            </p>
+            <ul className="reasons__list">
+              {reasonPoints.map(point => (
+                <li key={point}>
+                  <DecryptedText
+                    text={point}
+                    animateOn="view"
+                    revealDirection="start"
+                    sequential
+                    parentClassName="reasons__point"
+                    className="reasons__point--revealed"
+                    encryptedClassName="reasons__point--scrambled"
+                    speed={70}
+                  />
+                </li>
               ))}
-            </CardSwap>
+            </ul>
           </div>
         </section>
 
         <section id="proyectos" className="section section--projects">
-          <div className="section__intro">
-            <span className="section__eyebrow">🧭 Sección 5</span>
+          <div className="section__intro" data-animate>
             <h2>Proyectos y casos de éxito</h2>
             <p>
               Desde prototipos visionarios hasta despliegues productivos, nuestras soluciones ya impulsan experiencias inteligentes.
             </p>
           </div>
           <div className="projects__grid">
-            <div className="projects__visual">
+            <div className="projects__visual" data-animate>
               <BounceCards
                 images={projectImages}
                 transformStyles={projectTransforms}
@@ -188,24 +284,18 @@ export default function App() {
                 animationStagger={0.08}
               />
             </div>
-            <ul className="projects__list">
+            <ul className="projects__list" data-animate>
               <li>
                 <h3>Asistente IA para logística inteligente</h3>
-                <p>
-                  Priorización dinámica de rutas y abastecimiento predictivo que reduce tiempos de entrega hasta un 28%.
-                </p>
+                <p>Priorización dinámica de rutas y abastecimiento predictivo que reduce tiempos de entrega hasta un 28%.</p>
               </li>
               <li>
                 <h3>Sistema robótico de monitoreo ambiental</h3>
-                <p>
-                  Robots autónomos con sensores de visión térmica y análisis en tiempo real para zonas industriales críticas.
-                </p>
+                <p>Robots autónomos con sensores de visión térmica y análisis en tiempo real para zonas industriales críticas.</p>
               </li>
               <li>
                 <h3>App de control para dispositivos inteligentes</h3>
-                <p>
-                  Plataforma móvil que centraliza IoT doméstico con analítica energética y asistentes conversacionales.
-                </p>
+                <p>Plataforma móvil que centraliza IoT doméstico con analítica energética y asistentes conversacionales.</p>
               </li>
               <li>
                 <h3>Experiencia inmersiva Iron Man</h3>
@@ -221,15 +311,12 @@ export default function App() {
         </section>
 
         <section id="contacto" className="section section--contact">
-          <div className="section__intro">
-            <span className="section__eyebrow">📞 Sección 6</span>
+          <div className="section__intro" data-animate>
             <h2>Conectemos ideas para crear el futuro</h2>
-            <p>
-              Cuéntanos tu reto y coordinemos una sesión estratégica para trazar el roadmap tecnológico.
-            </p>
+            <p>Cuéntanos tu reto y coordinemos una sesión estratégica para trazar el roadmap tecnológico.</p>
           </div>
           <div className="contact__grid">
-            <form className="contact__form">
+            <form className="contact__form" data-animate>
               <label className="form__field">
                 <span>Nombre</span>
                 <input type="text" name="name" placeholder="Tu nombre" required />
@@ -246,19 +333,25 @@ export default function App() {
                 Enviar mensaje
               </button>
             </form>
-            <div className="contact__details">
+            <div className="contact__details" data-animate>
               <h3>Contacto directo</h3>
               <ul>
                 <li>
-                  <span className="label">Email</span>
+                  <span className="label">
+                    <MailIcon size={18} aria-hidden="true" /> Email
+                  </span>
                   <a href="mailto:hola@mknexus.ai">hola@mknexus.ai</a>
                 </li>
                 <li>
-                  <span className="label">Teléfono</span>
+                  <span className="label">
+                    <Radio size={18} aria-hidden="true" /> Teléfono
+                  </span>
                   <a href="tel:+573001234567">+57 300 123 4567</a>
                 </li>
                 <li>
-                  <span className="label">Redes</span>
+                  <span className="label">
+                    <Cpu size={18} aria-hidden="true" /> Redes
+                  </span>
                   <div className="contact__links">
                     <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">
                       LinkedIn
@@ -276,6 +369,8 @@ export default function App() {
           </div>
         </section>
       </main>
+
+      <Dock items={dockItems} />
     </div>
   );
 }
