@@ -490,12 +490,12 @@ export default function ASCIIText({
           position: absolute;
           left: 0;
           top: 0;
-          background-image: radial-gradient(circle, #ff6188 0%, #fc9867 50%, #ffd866 100%);
+          background-image: radial-gradient(circle, #007bff 0%, #00ffff 45%, #00ff9f 100%);
           background-attachment: fixed;
           -webkit-text-fill-color: transparent;
           -webkit-background-clip: text;
           z-index: 9;
-          mix-blend-mode: difference;
+          mix-blend-mode: screen;
         }
       `}</style>
     </div>

@@ -12,7 +12,8 @@
     "ogl": "^1.0.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "three": "^0.161.0"
+    "three": "^0.161.0",
+    "gsap": "^3.12.5"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",

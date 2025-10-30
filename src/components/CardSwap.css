@@ -1,0 +1,46 @@
+.card-swap-container {
+  position: relative;
+  perspective: 1200px;
+  overflow: visible;
+  margin: 0 auto;
+}
+
+.card-swap-container .card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(0, 255, 255, 0.35);
+  background: linear-gradient(160deg, rgba(10, 25, 47, 0.85), rgba(0, 123, 255, 0.25));
+  color: #ffffff;
+  padding: 2.25rem;
+  box-shadow: 0 24px 60px rgba(0, 15, 35, 0.55);
+}
+
+.card-swap-container .card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.85rem;
+}
+
+.card-swap-container .card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@media (max-width: 768px) {
+  .card-swap-container {
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 540px) {
+  .card-swap-container {
+    transform: scale(0.7);
+  }
+}
+

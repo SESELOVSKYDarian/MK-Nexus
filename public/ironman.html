@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iron Man Lab | MK Nexus</title>
+    <link rel="stylesheet" href="/styles/ironman.css" />
+  </head>
+  <body>
+    <nav class="navbar" id="navbar">
+      <div class="nav-inner">
+        <a href="/" class="brand" aria-label="Volver a MK Nexus">
+          <img src="/media/iron-man-icon-seeklogo.png" alt="Icono Iron Man" />
+        </a>
+        <a class="nav-link" href="#top">Inicio</a>
+        <a class="nav-link" href="#proyecto">Proyecto</a>
+        <a class="nav-link" href="#jarvis">Jarvis Lab</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="top">
+      <video id="ironVideo" autoplay muted playsinline loop>
+        <source src="/media/cascoironman.mp4" type="video/mp4" />
+      </video>
+      <button class="scroll-down" data-scroll="#proyecto" aria-label="Descubrir el proyecto">⌄</button>
+    </section>
+
+    <main>
+      <section class="project" id="proyecto">
+        <div class="container">
+          <h2 class="title">Proyecto Iron Man</h2>
+          <div class="step">
+            <div class="col text">
+              <h3>HUD inmersivo</h3>
+              <p>
+                Una interfaz envolvente que simula el entorno de Tony Stark, con indicadores holográficos, telemetría en tiempo
+                real y animaciones dinámicas creadas por el equipo MK Nexus.
+              </p>
+            </div>
+            <div class="col image">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80" alt="Panel futurista" />
+            </div>
+          </div>
+          <div class="step reverse">
+            <div class="col text">
+              <h3>Asistentes inteligentes</h3>
+              <p>
+                El prototipo integra asistentes conversacionales impulsados por IA que brindan recomendaciones tácticas y
+                controlan dispositivos conectados desde la misma interfaz.
+              </p>
+            </div>
+            <div class="col image">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Panel de comandos" />
+            </div>
+          </div>
+          <div class="step">
+            <div class="col text">
+              <h3>Experiencias multisensoriales</h3>
+              <p>
+                Combinamos sonido espacial, luces dinámicas y retroalimentación háptica para que cada interacción se sienta
+                como pilotar el traje original.
+              </p>
+            </div>
+            <div class="col image">
+              <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Equipo trabajando" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="jarvis" id="jarvis">
+        <div class="hud-grid"></div>
+        <div class="hud-aurora"></div>
+        <div class="hud-scan"></div>
+        <div class="hud-ring"></div>
+        <div class="hud-particles"></div>
+        <div class="container">
+          <div class="jarvis-hero">
+            <span class="badge">MK Nexus Lab</span>
+            <h2 class="jarvis-title">Jarvis Experience</h2>
+            <p class="tagline">
+              Un laboratorio vivo donde probamos tecnologías de interacción avanzada, robótica colaborativa y sistemas de
+              inteligencia artificial conversacional.
+            </p>
+            <div class="cta-row">
+              <a class="cta cta-primary" href="/">
+                Volver al sitio principal
+              </a>
+              <a class="cta cta-ghost" href="mailto:hola@mknexus.ai">Agendar demo</a>
+            </div>
+          </div>
+
+          <div class="jarvis-grid">
+            <div>
+              <p class="lead">
+                El Jarvis Lab es un proyecto transversal donde los equipos de hardware, software e IA experimentan con nuevas
+                interfaces. Cada módulo se conecta con la nube de MK Nexus para desplegar analítica en tiempo real.
+              </p>
+              <div class="feature-cards">
+                <article class="fcard">
+                  <h3>Telemetría avanzada</h3>
+                  <p>Monitorizamos señales biométricas, ambientales y de desempeño del usuario en vivo.</p>
+                </article>
+                <article class="fcard">
+                  <h3>Control multimodal</h3>
+                  <p>Voz, gestos y controles hápticos sincronizados por un motor de IA conversacional.</p>
+                </article>
+                <article class="fcard">
+                  <h3>Robots aliados</h3>
+                  <p>Integramos drones y brazos robóticos que se coordinan con la interfaz HUD.</p>
+                </article>
+                <article class="fcard">
+                  <h3>Seguridad reforzada</h3>
+                  <p>Autenticación biométrica y cifrado de punta a punta para proteger cada comando.</p>
+                </article>
+              </div>
+            </div>
+            <div class="media-card">
+              <div class="media-card__inner">
+                <h3>Próximos pasos</h3>
+                <p>
+                  Estamos integrando aprendizaje reforzado para anticipar necesidades del usuario y automatizar maniobras
+                  críticas en escenarios industriales.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+          ¿Quieres construir interfaces futuristas para tu organización? Escríbenos a
+          <a href="mailto:hola@mknexus.ai">hola@mknexus.ai</a>.
+        </p>
+      </div>
+    </footer>
+
+    <script src="/scripts/app.js" defer></script>
+  </body>
+</html>

@@ -1,27 +1,30 @@
 :root {
   font-family: 'IBM Plex Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: #f3f3f3;
-  background: #050505;
+  color: #ffffff;
+  background-color: #0a192f;
+  scroll-behavior: smooth;
 }
 
 * {
   box-sizing: border-box;
 }
 
-body,
 html,
+body,
 #root {
   margin: 0;
-  height: 100%;
+  min-height: 100%;
   width: 100%;
-  background: #050505;
+  background-color: #0a192f;
 }
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 h1,
+h2,
+h3,
 p {
   margin: 0;
 }
