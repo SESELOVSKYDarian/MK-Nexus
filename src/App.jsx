@@ -6,7 +6,6 @@ import {
   Home,
   Star,
   Settings,
-  Layers,
   Briefcase,
   Mail as MailIcon,
   Cpu,
@@ -87,6 +86,7 @@ const projectImages = [
 ];
 
 const ironmanPageHref = `${import.meta.env.BASE_URL}ironman.html`;
+const ironmanIconSrc = `${import.meta.env.BASE_URL}media/iron-man-icon-seeklogo.png`;
 
 const projectTransforms = [
   "rotate(6deg) translate(-150px)",
@@ -149,7 +149,15 @@ export default function App() {
             ?.scrollIntoView({ behavior: "smooth" }),
       },
       {
-        icon: <Layers size={18} />,
+        icon: (
+          <img
+            src={ironmanIconSrc}
+            alt=""
+            width="18"
+            height="18"
+            aria-hidden="true"
+          />
+        ),
         label: "Iron Man",
         onClick: () => {
           const targetUrl = new URL(ironmanPageHref, window.location.origin);
@@ -173,7 +181,7 @@ export default function App() {
             ?.scrollIntoView({ behavior: "smooth" }),
       },
     ],
-    [ironmanPageHref]
+    [ironmanPageHref, ironmanIconSrc]
   );
 
   return (
