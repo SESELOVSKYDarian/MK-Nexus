@@ -82,7 +82,8 @@
 }
 
 .hero__copy {
-  width: min(100%, 560px);
+  width: 100%;
+  max-width: clamp(520px, 85vw, 1480px);
   margin: 0 auto;
   padding: clamp(1rem, 3vw, 2rem);
   backdrop-filter: blur(6px);
@@ -178,6 +179,12 @@
 @media (min-width: 901px) {
   .hero__copy {
     margin: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero__copy {
+    padding: clamp(1.5rem, 3vw, 2.75rem);
   }
 }
 
