@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -10,11 +10,15 @@
     <nav class="navbar" id="navbar">
       <div class="nav-inner">
         <a href="/" class="brand" aria-label="Volver a MK Nexus">
-          <img src="/media/iron-man-icon-seeklogo.png" alt="Icono Iron Man" />
+          <img
+            src="/media/iron-man-icon-seeklogo.png"
+            alt="Icono Iron Man"
+            class="logo"
+          />
         </a>
         <a class="nav-link" href="#top">Inicio</a>
-        <a class="nav-link" href="#proyecto">Proyecto</a>
-        <a class="nav-link" href="#jarvis">Jarvis Lab</a>
+        <a class="nav-link" href="#proyecto">Paso a paso</a>
+        <a class="nav-link" href="#jarvis">Sistema electrónico</a>
       </div>
     </nav>
 
@@ -22,47 +26,97 @@
       <video id="ironVideo" autoplay muted playsinline loop>
         <source src="/media/cascoironman.mp4" type="video/mp4" />
       </video>
-      <button class="scroll-down" data-scroll="#proyecto" aria-label="Descubrir el proyecto">⌄</button>
+      <button
+        class="scroll-down"
+        data-scroll="#proyecto"
+        aria-label="Descubrir el proyecto"
+      >
+        ⌄
+      </button>
     </section>
 
     <main>
       <section class="project" id="proyecto">
         <div class="container">
-          <h2 class="title">Proyecto Iron Man</h2>
+          <h2 class="title">Construcción del Casco Iron Man</h2>
+
           <div class="step">
             <div class="col text">
-              <h3>HUD inmersivo</h3>
+              <h3>1. Modelado 3D</h3>
               <p>
-                Una interfaz envolvente que simula el entorno de Tony Stark, con indicadores holográficos, telemetría en tiempo
-                real y animaciones dinámicas creadas por el equipo MK Nexus.
+                El casco fue diseñado digitalmente en software 3D para obtener
+                cada pieza con las proporciones correctas y listas para
+                impresión.
               </p>
             </div>
             <div class="col image">
-              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80" alt="Panel futurista" />
+              <img src="/media/paso1.jpg" alt="Modelado 3D del casco" />
             </div>
           </div>
+
           <div class="step reverse">
             <div class="col text">
-              <h3>Asistentes inteligentes</h3>
+              <h3>2. Impresión y ensamblado</h3>
               <p>
-                El prototipo integra asistentes conversacionales impulsados por IA que brindan recomendaciones tácticas y
-                controlan dispositivos conectados desde la misma interfaz.
+                Las piezas fueron impresas en 3D por partes y luego ensambladas
+                utilizando adhesivo resistente para formar el casco completo.
               </p>
             </div>
             <div class="col image">
-              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="Panel de comandos" />
+              <img src="/media/paso2.jpg" alt="Impresión 3D y ensamblado" />
             </div>
           </div>
+
           <div class="step">
             <div class="col text">
-              <h3>Experiencias multisensoriales</h3>
+              <h3>3. Lijado y detalles</h3>
               <p>
-                Combinamos sonido espacial, luces dinámicas y retroalimentación háptica para que cada interacción se sienta
-                como pilotar el traje original.
+                Se aplicó masilla, se lijaron imperfecciones y se corrigió la
+                superficie hasta dejarla lista para pintar.
               </p>
             </div>
             <div class="col image">
-              <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80" alt="Equipo trabajando" />
+              <img src="/media/paso3.jpg" alt="Lijado y masilla" />
+            </div>
+          </div>
+
+          <div class="step reverse">
+            <div class="col text">
+              <h3>4. Pintura y acabado</h3>
+              <p>
+                Se aplicó primer, pintura metálica roja y dorada, y barniz
+                protector para conseguir el acabado clásico del casco de Iron
+                Man.
+              </p>
+            </div>
+            <div class="col image">
+              <img src="/media/paso4.jpg" alt="Pintura del casco" />
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="col text">
+              <h3>5. Instalación del hardware</h3>
+              <p>
+                Se añadieron servomotores, luces LED y un microcontrolador para
+                permitir movimiento automático y encendido de ojos.
+              </p>
+            </div>
+            <div class="col image">
+              <img src="/media/paso5.jpg" alt="Electrónica interna del casco" />
+            </div>
+          </div>
+
+          <div class="step reverse">
+            <div class="col text">
+              <h3>6. Resultado final</h3>
+              <p>
+                El casco final cuenta con apertura automática, iluminación
+                interna y acabado cinematográfico.
+              </p>
+            </div>
+            <div class="col image">
+              <img src="/media/paso6.jpg" alt="Casco Iron Man terminado" />
             </div>
           </div>
         </div>
@@ -76,51 +130,67 @@
         <div class="hud-particles"></div>
         <div class="container">
           <div class="jarvis-hero">
-            <span class="badge">MK Nexus Lab</span>
-            <h2 class="jarvis-title">Jarvis Experience</h2>
+            <span class="badge">JARVIS v1.0</span>
+            <h2 class="jarvis-title">Asistente de IA Offline</h2>
             <p class="tagline">
-              Un laboratorio vivo donde probamos tecnologías de interacción avanzada, robótica colaborativa y sistemas de
-              inteligencia artificial conversacional.
+              JARVIS es un asistente personal instalado localmente, sin conexión
+              a internet, capaz de ejecutar comandos del sistema, reproducir
+              música, copiar y mover archivos, y responder mediante síntesis de
+              voz.
             </p>
             <div class="cta-row">
-              <a class="cta cta-primary" href="/">
-                Volver al sitio principal
-              </a>
-              <a class="cta cta-ghost" href="mailto:hola@mknexus.ai">Agendar demo</a>
+              <a class="cta cta-primary" href="/">Volver al sitio principal</a>
+              <a class="cta cta-ghost" href="mailto:hola@mknexus.ai"
+                >Solicitar instalación</a
+              >
             </div>
           </div>
 
           <div class="jarvis-grid">
             <div>
               <p class="lead">
-                El Jarvis Lab es un proyecto transversal donde los equipos de hardware, software e IA experimentan con nuevas
-                interfaces. Cada módulo se conecta con la nube de MK Nexus para desplegar analítica en tiempo real.
+                Funciona con un modelo de IA offline entrenado para comandos
+                naturales, control de escritorio y automatización básica sin
+                depender de servidores externos.
               </p>
               <div class="feature-cards">
                 <article class="fcard">
-                  <h3>Telemetría avanzada</h3>
-                  <p>Monitorizamos señales biométricas, ambientales y de desempeño del usuario en vivo.</p>
+                  <h3>Control del sistema</h3>
+                  <p>
+                    Puede copiar, pegar, eliminar y organizar archivos mediante
+                    comandos de voz o texto.
+                  </p>
                 </article>
                 <article class="fcard">
-                  <h3>Control multimodal</h3>
-                  <p>Voz, gestos y controles hápticos sincronizados por un motor de IA conversacional.</p>
+                  <h3>Reproductor local</h3>
+                  <p>
+                    Reproduce música descargada, controla volumen y permite
+                    crear playlists sin conexión.
+                  </p>
                 </article>
                 <article class="fcard">
-                  <h3>Robots aliados</h3>
-                  <p>Integramos drones y brazos robóticos que se coordinan con la interfaz HUD.</p>
+                  <h3>Sintetizador de voz</h3>
+                  <p>
+                    Responde y narra acciones en voz generada por TTS integrado
+                    sin depender de internet.
+                  </p>
                 </article>
                 <article class="fcard">
-                  <h3>Seguridad reforzada</h3>
-                  <p>Autenticación biométrica y cifrado de punta a punta para proteger cada comando.</p>
+                  <h3>Teclado virtual</h3>
+                  <p>
+                    Puede escribir automáticamente en pantalla, llenar
+                    formularios o redactar mensajes.
+                  </p>
                 </article>
               </div>
             </div>
+
             <div class="media-card">
               <div class="media-card__inner">
-                <h3>Próximos pasos</h3>
+                <h3>Próximas funciones</h3>
                 <p>
-                  Estamos integrando aprendizaje reforzado para anticipar necesidades del usuario y automatizar maniobras
-                  críticas en escenarios industriales.
+                  Integración con reconocimiento facial, activación por palabra
+                  clave y modo asistente para videojuegos.
                 </p>
               </div>
             </div>
@@ -132,7 +202,7 @@
     <footer class="footer">
       <div class="container">
         <p>
-          ¿Quieres construir interfaces futuristas para tu organización? Escríbenos a
+          ¿Quieres construir algo parecido? Escríbenos a
           <a href="mailto:hola@mknexus.ai">hola@mknexus.ai</a>.
         </p>
       </div>

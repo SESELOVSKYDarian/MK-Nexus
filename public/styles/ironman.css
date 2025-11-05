@@ -46,8 +46,8 @@ body {
   gap: 72px;
   justify-content: center; /* ↑ gap */
 }
-.brand {
-  width: 44px;
+.logo {
+  width: 42px;
   height: auto;
 }
 .nav-link {
