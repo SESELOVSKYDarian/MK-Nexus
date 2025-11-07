@@ -6,7 +6,6 @@ import {
   Home,
   Star,
   Settings,
-  Layers,
   Briefcase,
   Mail as MailIcon,
   Cpu,
@@ -81,7 +80,13 @@ const reasonItems = [
   },
 ];
 
-const projectImages = ["../media/jarvis.jpg", "../media/ironmancascomi.jpg"];
+const projectImages = [
+  `${import.meta.env.BASE_URL}media/jarvis.jpg`,
+  `${import.meta.env.BASE_URL}media/ironmancascomi.jpg`,
+];
+
+const ironmanPageHref = `${import.meta.env.BASE_URL}ironman.html`;
+const ironmanIconSrc = `${import.meta.env.BASE_URL}media/iron-man-icon-seeklogo.png`;
 
 const projectTransforms = [
   "rotate(6deg) translate(-150px)",
@@ -144,12 +149,20 @@ export default function App() {
             ?.scrollIntoView({ behavior: "smooth" }),
       },
       {
-        icon: <Layers size={18} />,
+        icon: (
+          <img
+            src={ironmanIconSrc}
+            alt=""
+            width="18"
+            height="18"
+            aria-hidden="true"
+          />
+        ),
         label: "Iron Man",
-        onClick: () =>
-          document
-            .querySelector("/ironman.html")
-            ?.scrollIntoView({ behavior: "smooth" }),
+        onClick: () => {
+          const targetUrl = new URL(ironmanPageHref, window.location.origin);
+          window.location.href = targetUrl.toString();
+        },
       },
       {
         icon: <Briefcase size={18} />,
@@ -168,7 +181,7 @@ export default function App() {
             ?.scrollIntoView({ behavior: "smooth" }),
       },
     ],
-    []
+    [ironmanPageHref, ironmanIconSrc]
   );
 
   return (
@@ -353,7 +366,7 @@ export default function App() {
                 <p>
                   Visual interactivo inspirado en la interfaz de Tony Stark que
                   puedes explorar en nuestro laboratorio digital.
-                  <a href="/ironman.html" className="projects__link">
+                  <a href={ironmanPageHref} className="projects__link">
                     Ver Iron Man Lab
                   </a>
                 </p>

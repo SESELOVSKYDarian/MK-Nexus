@@ -20,8 +20,35 @@ document.querySelectorAll('[data-scroll], .nav-link').forEach(el => {
 
 // 🔎 Scrollspy + navbar sólido al llegar a #proyecto
 const nav = document.getElementById('navbar');
+const navLinksContainer = document.getElementById('nav-links');
+const navToggle = document.querySelector('.nav-toggle');
 const links = [...document.querySelectorAll('.nav-link')];
 const sections = ['#top', '#proyecto', '#jarvis'].map(sel => document.querySelector(sel)).filter(Boolean);
+
+if (navToggle && navLinksContainer) {
+  navToggle.addEventListener('click', () => {
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', String(!expanded));
+    navLinksContainer.classList.toggle('is-open', !expanded);
+  });
+
+  navLinksContainer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navLinksContainer.classList.remove('is-open');
+    });
+  });
+
+  const mq = window.matchMedia('(min-width: 641px)');
+  const closeMenu = () => {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navLinksContainer.classList.remove('is-open');
+  };
+
+  mq.addEventListener
+    ? mq.addEventListener('change', e => e.matches && closeMenu())
+    : mq.addListener(e => e.matches && closeMenu());
+}
 
 function onScroll() {
   const y = window.scrollY + 120;
